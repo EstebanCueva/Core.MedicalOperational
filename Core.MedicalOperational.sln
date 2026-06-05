@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MedicalOperational.Domain", "src\Core.MedicalOperational.Domain\Core.MedicalOperational.Domain.csproj", "{B3D1414A-0C1F-472C-A086-6BD299D36990}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{DF39FD77-15ED-4676-93AC-7A56306991CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MedicalOperational.Application", "src\Core.MedicalOperational.Application\Core.MedicalOperational.Application.csproj", "{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MedicalOperational.Infrastructure", "src\Core.MedicalOperational.Infrastructure\Core.MedicalOperational.Infrastructure.csproj", "{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MedicalOperational.Test", "Test\Core.MedicalOperational.Test\Core.MedicalOperational.Test.csproj", "{31A8189B-F891-487B-BC21-7F2F70F3C5F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MedicalOperational.Api", "src\Core.MedicalOperational.Api\Core.MedicalOperational.Api.csproj", "{9F7FC567-6196-4784-8372-5FC83A23355B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3D1414A-0C1F-472C-A086-6BD299D36990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D1414A-0C1F-472C-A086-6BD299D36990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D1414A-0C1F-472C-A086-6BD299D36990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D1414A-0C1F-472C-A086-6BD299D36990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A8189B-F891-487B-BC21-7F2F70F3C5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A8189B-F891-487B-BC21-7F2F70F3C5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A8189B-F891-487B-BC21-7F2F70F3C5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A8189B-F891-487B-BC21-7F2F70F3C5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7FC567-6196-4784-8372-5FC83A23355B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7FC567-6196-4784-8372-5FC83A23355B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7FC567-6196-4784-8372-5FC83A23355B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7FC567-6196-4784-8372-5FC83A23355B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3D1414A-0C1F-472C-A086-6BD299D36990} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B54ADD57-136C-4A93-BC84-0C1EC3D3B39D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7B1DB342-A33B-4ADB-BF21-99A84E2A08A0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{31A8189B-F891-487B-BC21-7F2F70F3C5F0} = {DF39FD77-15ED-4676-93AC-7A56306991CC}
+		{9F7FC567-6196-4784-8372-5FC83A23355B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {899EDB8C-A32E-49F3-9B9F-727D78A59811}
+	EndGlobalSection
+EndGlobal

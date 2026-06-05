@@ -1,0 +1,6 @@
+@Core.MedicalOperational.Api_HostAddress = http://localhost:5016
+
+GET {{Core.MedicalOperational.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
