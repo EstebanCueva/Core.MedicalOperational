@@ -17,4 +17,8 @@ public class OperationalCompatibilityMatchResponse
     public string Status { get; set; } = string.Empty;
     public string Explanation { get; set; } = string.Empty;
     public string NextAvailableDate { get; set; } = string.Empty;
+    public int PatientId { get; set; }
+    public int ProcedureId { get; set; }
+    public int DoctorId { get; set; }
+    public int RoomId { get; set; }
 }

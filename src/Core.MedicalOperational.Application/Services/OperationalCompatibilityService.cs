@@ -343,6 +343,10 @@ public class OperationalCompatibilityService : IOperationalCompatibilityService
                     var resultResponse = new OperationalCompatibilityMatchResponse
                     {
                         AppointmentId = appointment.Id,
+                        PatientId = selectedPatient.Id,
+                        ProcedureId = selectedProcedure.Id,
+                        DoctorId = doctor.Id,
+                        RoomId = room.Id,
                         PatientName = selectedPatient.FullName,
                         ProcedureCode = selectedProcedure.ProcedureCode,
                         ProcedureName = selectedProcedure.Name,
