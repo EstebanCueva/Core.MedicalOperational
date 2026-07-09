@@ -1,5 +1,7 @@
-﻿using Core.MedicalOperational.Application.DTOs.MedicalAppointments;
+﻿using Core.MedicalOperational.Application.Dtos.MedicalAppointment;
+using Core.MedicalOperational.Application.DTOs.MedicalAppointments;
 using Core.MedicalOperational.Application.Interfaces.Services;
+using Core.MedicalOperational.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -91,5 +93,38 @@ public class MedicalAppointmentsController : ControllerBase
             cancellationToken);
 
         return Ok(response);
+    }
+    [HttpPost("{id:int}/schedule")]
+    public async Task<IActionResult> Schedule(
+    int id,
+    [FromBody] ScheduleMedicalAppointmentRequest request,
+    CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await _medicalAppointmentService.ScheduleAsync(id, request, cancellationToken);
+            return Ok(response);
+        }
+        catch (DomainValidationException exception)
+        {
+            return BadRequest(new { message = exception.Message });
+        }
+    }
+
+    [HttpPost("{id:int}/cancel")]
+    public async Task<IActionResult> Cancel(
+        int id,
+        [FromBody] CancelMedicalAppointmentRequest request,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await _medicalAppointmentService.CancelAsync(id, request, cancellationToken);
+            return Ok(response);
+        }
+        catch (DomainValidationException exception)
+        {
+            return BadRequest(new { message = exception.Message });
+        }
     }
 }
