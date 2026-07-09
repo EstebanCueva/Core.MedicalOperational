@@ -21,6 +21,7 @@ public static class DependencyInjection
         {
             options.UseSqlServer(connectionString);
         });
+        services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<MedicalOperationalDbContext>());
 
         services.AddScoped<IPatientRepository, PatientRepository>();
         services.AddScoped<IDoctorRepository, DoctorRepository>();

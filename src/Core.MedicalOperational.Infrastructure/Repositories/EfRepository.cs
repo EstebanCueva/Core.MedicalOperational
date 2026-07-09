@@ -30,15 +30,13 @@ public class EfRepository<T> : IBaseRepository<T> where T : class
     public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         await DbSet.AddAsync(entity, cancellationToken);
-        await Context.SaveChangesAsync(cancellationToken);
-
         return entity;
     }
 
     public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         DbSet.Update(entity);
-        await Context.SaveChangesAsync(cancellationToken);
+        await Task.CompletedTask;
     }
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
@@ -51,6 +49,5 @@ public class EfRepository<T> : IBaseRepository<T> where T : class
         }
 
         DbSet.Remove(entity);
-        await Context.SaveChangesAsync(cancellationToken);
     }
 }

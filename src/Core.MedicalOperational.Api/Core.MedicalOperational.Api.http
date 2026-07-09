@@ -1,6 +1,74 @@
 @Core.MedicalOperational.Api_HostAddress = http://localhost:5016
+@jwt = REPLACE_WITH_JWT_TOKEN
 
-GET {{Core.MedicalOperational.Api_HostAddress}}/weatherforecast/
+GET {{Core.MedicalOperational.Api_HostAddress}}/api/health
 Accept: application/json
+
+###
+
+POST {{Core.MedicalOperational.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "client@demo.com",
+  "password": "demo123"
+}
+
+###
+
+POST {{Core.MedicalOperational.Api_HostAddress}}/api/client-appointments/availability
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "patientId": 1,
+  "doctorId": 1,
+  "procedureId": 1,
+  "requestedDate": "2026-05-20",
+  "preferredStartTime": "08:00",
+  "preferredEndTime": "12:00"
+}
+
+###
+
+POST {{Core.MedicalOperational.Api_HostAddress}}/api/client-appointments/schedule
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "patientId": 1,
+  "doctorId": 1,
+  "procedureId": 1,
+  "roomId": 1,
+  "startDate": "2026-05-20T08:00:00",
+  "endDate": "2026-05-20T08:30:00",
+  "notes": "Paciente solicita confirmacion por correo."
+}
+
+###
+
+PATCH {{Core.MedicalOperational.Api_HostAddress}}/api/client-appointments/101/cancel
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "patientId": 1,
+  "cancellationReason": "El paciente no podra asistir.",
+  "requestedAt": "2026-05-19T16:30:00"
+}
+
+###
+
+POST {{Core.MedicalOperational.Api_HostAddress}}/api/operational-compatibility/analyze
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "analysisDate": "2026-05-20T00:00:00",
+  "specialtyCode": null,
+  "procedureCode": null,
+  "includeOnlyCompatible": false,
+  "saveResults": false
+}
 
 ###

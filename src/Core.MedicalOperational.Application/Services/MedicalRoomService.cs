@@ -9,10 +9,12 @@ namespace Core.MedicalOperational.Application.Services;
 public class MedicalRoomService : IMedicalRoomService
 {
     private readonly IMedicalRoomRepository _medicalRoomRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public MedicalRoomService(IMedicalRoomRepository medicalRoomRepository)
+    public MedicalRoomService(IMedicalRoomRepository medicalRoomRepository, IUnitOfWork unitOfWork)
     {
         _medicalRoomRepository = medicalRoomRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<IReadOnlyCollection<MedicalRoomResponse>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -46,6 +48,7 @@ public class MedicalRoomService : IMedicalRoomService
         };
 
         var created = await _medicalRoomRepository.AddAsync(entity, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(created);
     }
 
@@ -63,12 +66,14 @@ public class MedicalRoomService : IMedicalRoomService
         room.Status = request.Status;
 
         await _medicalRoomRepository.UpdateAsync(room, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(room);
     }
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         await _medicalRoomRepository.DeleteAsync(id, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     private static MedicalRoomResponse MapToResponse(MedicalRoom room)

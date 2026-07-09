@@ -9,5 +9,8 @@ public class UpdateMedicalAppointmentRequest
     public int ProcedureId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    public string Notes { get; set; } = string.Empty;
+    public string? CancellationReason { get; set; }
+    public DateTime? CancelledAt { get; set; }
     public AppointmentStatus Status { get; set; }
 }

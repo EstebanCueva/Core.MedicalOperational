@@ -36,7 +36,8 @@ public class AuthController : ControllerBase
             fullName = User.Identity?.Name,
             email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value,
             role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value,
-            doctorId = User.FindFirst("DoctorId")?.Value
+            doctorId = User.FindFirst("DoctorId")?.Value,
+            patientId = User.FindFirst("PatientId")?.Value
         });
     }
 }

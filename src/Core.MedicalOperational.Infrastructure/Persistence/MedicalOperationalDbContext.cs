@@ -1,9 +1,10 @@
 using Core.MedicalOperational.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Core.MedicalOperational.Application.Interfaces.Repositories;
 
 namespace Core.MedicalOperational.Infrastructure.Persistence;
 
-public class MedicalOperationalDbContext : DbContext
+public class MedicalOperationalDbContext : DbContext, IUnitOfWork
 {
     public MedicalOperationalDbContext(DbContextOptions<MedicalOperationalDbContext> options)
         : base(options)
@@ -99,6 +100,9 @@ public class MedicalOperationalDbContext : DbContext
             entity.Property(x => x.DoctorId)
                 .IsRequired(false);
 
+            entity.Property(x => x.PatientId)
+                .IsRequired(false);
+
             entity.Property(x => x.IsActive)
                 .IsRequired();
 
@@ -114,6 +118,11 @@ public class MedicalOperationalDbContext : DbContext
             entity.HasOne<Doctor>()
                 .WithMany()
                 .HasForeignKey(x => x.DoctorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne<Patient>()
+                .WithMany()
+                .HasForeignKey(x => x.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
     }
@@ -530,6 +539,17 @@ public class MedicalOperationalDbContext : DbContext
 
             entity.Property(x => x.EndDate)
                 .IsRequired();
+
+            entity.Property(x => x.Notes)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(x => x.CancellationReason)
+                .HasMaxLength(1000)
+                .IsRequired(false);
+
+            entity.Property(x => x.CancelledAt)
+                .IsRequired(false);
 
             entity.Property(x => x.Status)
                 .HasConversion<string>()

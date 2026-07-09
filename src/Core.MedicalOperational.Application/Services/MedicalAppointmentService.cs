@@ -11,13 +11,16 @@ public class MedicalAppointmentService : IMedicalAppointmentService
 {
     private readonly IMedicalAppointmentRepository _medicalAppointmentRepository;
     private readonly IExistingAssignmentRepository _existingAssignmentRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public MedicalAppointmentService(
         IMedicalAppointmentRepository medicalAppointmentRepository,
-        IExistingAssignmentRepository existingAssignmentRepository)
+        IExistingAssignmentRepository existingAssignmentRepository,
+        IUnitOfWork unitOfWork)
     {
         _medicalAppointmentRepository = medicalAppointmentRepository;
         _existingAssignmentRepository = existingAssignmentRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<IReadOnlyCollection<MedicalAppointmentResponse>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -109,10 +112,14 @@ public class MedicalAppointmentService : IMedicalAppointmentService
             ProcedureId = request.ProcedureId,
             StartDate = request.StartDate,
             EndDate = request.EndDate,
+            Notes = request.Notes,
+            CancellationReason = request.CancellationReason,
+            CancelledAt = request.CancelledAt,
             Status = request.Status
         };
 
         var created = await _medicalAppointmentRepository.AddAsync(entity, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(created);
     }
 
@@ -130,15 +137,20 @@ public class MedicalAppointmentService : IMedicalAppointmentService
         appointment.ProcedureId = request.ProcedureId;
         appointment.StartDate = request.StartDate;
         appointment.EndDate = request.EndDate;
+        appointment.Notes = request.Notes;
+        appointment.CancellationReason = request.CancellationReason;
+        appointment.CancelledAt = request.CancelledAt;
         appointment.Status = request.Status;
 
         await _medicalAppointmentRepository.UpdateAsync(appointment, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(appointment);
     }
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         await _medicalAppointmentRepository.DeleteAsync(id, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     private static MedicalAppointmentResponse MapToResponse(MedicalAppointment appointment)
@@ -151,6 +163,9 @@ public class MedicalAppointmentService : IMedicalAppointmentService
             ProcedureId = appointment.ProcedureId,
             StartDate = appointment.StartDate,
             EndDate = appointment.EndDate,
+            Notes = appointment.Notes,
+            CancellationReason = appointment.CancellationReason,
+            CancelledAt = appointment.CancelledAt,
             Status = appointment.Status
         };
     }

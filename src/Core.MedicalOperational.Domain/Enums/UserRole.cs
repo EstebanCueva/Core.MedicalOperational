@@ -5,5 +5,6 @@ public enum UserRole
     Admin = 1,
     Doctor = 2,
     Receptionist = 3,
-    OperationalManager = 4
+    OperationalManager = 4,
+    Client = 5
 }

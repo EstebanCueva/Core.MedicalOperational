@@ -16,5 +16,5 @@ public class OperationalCompatibilityMatchResponse
     public List<string> Conflicts { get; set; } = new();
     public string Status { get; set; } = string.Empty;
     public string Explanation { get; set; } = string.Empty;
-    public string NextAvailableDate { get; set; } = string.Empty;
+    public string? NextAvailableDate { get; set; }
 }

@@ -20,4 +20,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Core.MedicalOperational.Application\Core.MedicalOperational.Application.csproj" />
+    <ProjectReference Include="..\..\src\Core.MedicalOperational.Domain\Core.MedicalOperational.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -20,6 +20,8 @@ public class ApplicationUser
 
     public int? DoctorId { get; set; }
 
+    public int? PatientId { get; set; }
+
     public bool IsActive { get; set; } = true;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;

@@ -9,10 +9,12 @@ namespace Core.MedicalOperational.Application.Services;
 public class MedicalProcedureService : IMedicalProcedureService
 {
     private readonly IMedicalProcedureRepository _medicalProcedureRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public MedicalProcedureService(IMedicalProcedureRepository medicalProcedureRepository)
+    public MedicalProcedureService(IMedicalProcedureRepository medicalProcedureRepository, IUnitOfWork unitOfWork)
     {
         _medicalProcedureRepository = medicalProcedureRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<IReadOnlyCollection<MedicalProcedureResponse>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -48,6 +50,7 @@ public class MedicalProcedureService : IMedicalProcedureService
         };
 
         var created = await _medicalProcedureRepository.AddAsync(entity, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(created);
     }
 
@@ -67,12 +70,14 @@ public class MedicalProcedureService : IMedicalProcedureService
         procedure.IsActive = request.IsActive;
 
         await _medicalProcedureRepository.UpdateAsync(procedure, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return MapToResponse(procedure);
     }
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         await _medicalProcedureRepository.DeleteAsync(id, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     private static MedicalProcedureResponse MapToResponse(MedicalProcedure procedure)

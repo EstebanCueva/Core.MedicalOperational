@@ -50,6 +50,11 @@ public class JwtTokenService : IJwtTokenService
             claims.Add(new Claim("DoctorId", user.DoctorId.Value.ToString()));
         }
 
+        if (user.PatientId.HasValue)
+        {
+            claims.Add(new Claim("PatientId", user.PatientId.Value.ToString()));
+        }
+
         var token = new JwtSecurityToken(
             issuer: issuer,
             audience: audience,
